@@ -1,0 +1,89 @@
+ {
+            "hall_id": 1,
+            "hall_name": "Shah Poran Hall",
+            "total_room": 110,
+            "total_number_of_seat": 400,
+            "admitted_students": 1,
+            "image": "http://127.0.0.1:8000/media/hall_images/shahporanhall_K5Hbh1D.jpeg"
+        },
+        {
+            "hall_id": 2,
+            "hall_name": "Bijoy 24 Hall",
+            "total_room": 150,
+            "total_number_of_seat": 550,
+            "admitted_students": 0,
+            "image": "http://127.0.0.1:8000/media/hall_images/bijoy24_CzfTgX4.jpeg"
+        },
+        {
+            "hall_id": 3,
+            "hall_name": "Syed Mujtaba Ali Hall",
+            "total_room": 125,
+            "total_number_of_seat": 480,
+            "admitted_students": 0,
+            "image": "http://127.0.0.1:8000/media/hall_images/muztoba_ali_hall_R0UHcF0.jpeg"
+        }
+
+
+
+
+
+        application
+
+
+        {
+            "registration_number": "2020331007",
+            "name": "Sheikh Khalid Azad",
+            "phone_number": "01832604569",
+            "email": "sheikhkhalidazad@gmail.com",
+            "blood_group": "AB(+ve)",
+            "father_name": "Sheikh Abul Kalam Azad",
+            "mother_name": "Laila Sultana",
+            "gender": "male",
+            "department_code": "CSE",
+            "study_program": "honors",
+            "session": "2020",
+            "semester": "3/2",
+            "premanent_address": "Chuadanga",
+            "home_distance_from_SUST_in_km": 550.0,
+            "monthly_income": 2000,
+            "special_reason_for_hall_seat": "Low Income",
+            "total_credits_offered": 84.0,
+            "total_credits_completed": 84.0,
+            "cgpa": 3.4,
+            "last_semester_gpa": 3.4,
+            "is_resident": true,
+            "resident_months_in_university_hall": 20,
+            "convicted": false,
+            "profile_picture": "http://127.0.0.1:8000/media/student_profile_pictures/IMG-20211123-WA0013_Dxsgm7a.jpg",
+            "attached_hall": 3
+        }
+
+
+
+
+source django_env/bin/activate
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
+
+
+rm db.sqlite3
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createsuperuser
+python3 manage.py runserver
+
+
+
+
+
+# Delete all migration files (except __init__.py) inside admission/migrations/
+find admission/migrations -name "*.py" -not -name "__init__.py" -delete
+find admission/migrations -name "*.pyc" -delete
+
+# Drop the database or the specific table if needed (SQLite case):
+rm db.sqlite3
+
+# Recreate migration and migrate again
+python3 manage.py makemigrations
+python3 manage.py migrate
