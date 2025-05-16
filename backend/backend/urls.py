@@ -4,7 +4,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('admission/', include('admission.urls')),
+    path('registration/', include('registration.urls')),
 ]
 
 if settings.DEBUG:  # Now you can use settings.DEBUG
