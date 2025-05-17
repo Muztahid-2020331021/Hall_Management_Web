@@ -118,7 +118,7 @@ class UserInformation(models.Model):
     image = models.ImageField(upload_to='user_images/', null=True, blank=True)
     phone_number = models.CharField(max_length=15)
     password = models.CharField(max_length=100)
-    user_role = models.CharField(max_length=100, choices=User_Role, default='Student')
+    user_role = models.CharField(max_length=100, choices=USER_ROLE, default='Student')
     blood_group = models.CharField(max_length=5)
     hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -209,10 +209,10 @@ class Admission(models.Model):
 class ProvostBody(models.Model):
     email = models.EmailField("Official Email",unique=True)  # Usually, email should be unique
     name=models.CharField(max_length=100)
-    provost_body_role = models.CharField(max_length=100,choices=Provost_Body_Role,default='Provost')
+    provost_body_role = models.CharField(max_length=100,choices=PROVOST_BODY_ROLE,default='Provost')
 
     department = models.CharField(max_length=100, default='')
-    department_role = models.CharField(max_length=100,choices=Department_Role,default='Professor')
+    department_role = models.CharField(max_length=100,choices=DEPARTMENT_ROLE,default='Professor')
 
 
     def __str__(self):
@@ -222,7 +222,7 @@ class ProvostBody(models.Model):
 class OfficialPerson(models.Model):
     email = models.EmailField(unique=True)
     name=models.CharField(max_length=100,default='')
-    official_role = models.CharField(max_length=100,choices=Office_Person_Role,default='Electrician')
+    official_role = models.CharField(max_length=100,choices=OFFICE_PERSON_ROLE,default='Electrician')
 
     def __str__(self):
         return self.name
@@ -238,14 +238,14 @@ class AddOffice(models.Model):
     blood_group = models.CharField(max_length=10)
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
 
-    user_role = models.CharField(max_length=100, choices=User_Role, default='Provost_Body')
+    user_role = models.CharField(max_length=100, choices=USER_ROLE, default='Provost_Body')
 
-    provost_body_role = models.CharField(max_length=100,choices=Provost_Body_Role,blank=True, null=True,help_text='Only for Provost Body')
+    provost_body_role = models.CharField(max_length=100,choices=PROVOST_BODY_ROLE,blank=True, null=True,help_text='Only for Provost Body')
 
     department = models.CharField(max_length=100, blank=True, null=True)
 
-    department_role = models.CharField(max_length=100,choices=Department_Role,blank=True, null=True,help_text='Only for Provost Body')
-    official_role = models.CharField(max_length=100, choices=Office_Person_Role, default='Assistant Register',blank=True, null=True,help_text='Only for Official Person')
+    department_role = models.CharField(max_length=100,choices=DEPARTMENT_ROLE,blank=True, null=True,help_text='Only for Provost Body')
+    official_role = models.CharField(max_length=100, choices=OFFICE_PERSON_ROLE, default='Assistant Register',blank=True, null=True,help_text='Only for Official Person')
     profile_picture = models.ImageField(upload_to='student_profile_pictures/', null=True, blank=True)
 
 

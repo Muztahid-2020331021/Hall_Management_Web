@@ -5,6 +5,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('registration/', include('registration.urls')),
+    path('complain/', include('complain.urls')),
 ]
 
 if settings.DEBUG:  # Now you can use settings.DEBUG
