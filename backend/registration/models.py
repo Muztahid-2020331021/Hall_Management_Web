@@ -118,7 +118,7 @@ class UserInformation(models.Model):
     image = models.ImageField(upload_to='user_images/', null=True, blank=True)
     phone_number = models.CharField(max_length=15)
     password = models.CharField(max_length=100)
-    user_role = models.CharField(max_length=100, choices=USER_ROLE, default='Student')
+    user_role = models.CharField(max_length=100, choices=USER_ROLE, default='provost_body')
     blood_group = models.CharField(max_length=5)
     hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -209,7 +209,7 @@ class Admission(models.Model):
 class ProvostBody(models.Model):
     email = models.EmailField("Official Email",unique=True)  # Usually, email should be unique
     name=models.CharField(max_length=100)
-    provost_body_role = models.CharField(max_length=100,choices=PROVOST_BODY_ROLE,default='Provost')
+    provost_body_role = models.CharField(max_length=100,choices=PROVOST_BODY_ROLE,default='provost')
 
     department = models.CharField(max_length=100, default='')
     department_role = models.CharField(max_length=100,choices=DEPARTMENT_ROLE,default='Professor')
@@ -238,7 +238,7 @@ class AddOffice(models.Model):
     blood_group = models.CharField(max_length=10)
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
 
-    user_role = models.CharField(max_length=100, choices=USER_ROLE, default='Provost_Body')
+    user_role = models.CharField(max_length=100, choices=USER_ROLE, default='provost_body')
 
     provost_body_role = models.CharField(max_length=100,choices=PROVOST_BODY_ROLE,blank=True, null=True,help_text='Only for Provost Body')
 
@@ -259,10 +259,10 @@ class AddOffice(models.Model):
         if not self.user_role:
             raise ValidationError("User role must be provided.")
 
-        if self.user_role == 'Provost_Body':
+        if self.user_role == 'provost_body':
             if not self.provost_body_role or not self.department_role or not self.department:
                 raise ValidationError("Provost body role, department role, and department must be provided for provost body.")
-        elif self.user_role == 'Official_Person':
+        elif self.user_role == 'official_person':
             if not self.official_role:
                 raise ValidationError("Official person type must be selected for official person.")
 
@@ -286,7 +286,8 @@ class AddOffice(models.Model):
             )
 
             # Handle ProvostBody
-            if self.user_role == 'Provost_Body':
+            if self.user_role == 'provost_body':
+
                 ProvostBody.objects.update_or_create(
                     email=self.email,
                     defaults={
@@ -298,14 +299,15 @@ class AddOffice(models.Model):
                 )
 
             # Handle OfficialPerson
-            elif self.user_role == 'Official_Person':
+            elif self.user_role == 'official_person':
+
 
                 OfficialPerson.objects.update_or_create(
                     email=self.email,
                     defaults={
                         'name':self.name,
                         'official_role': self.official_role
-
                     }
                 )
+        # Remove this line:
         self.delete()
