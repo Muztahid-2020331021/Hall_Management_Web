@@ -1,7 +1,5 @@
-from django import forms
-from .models import Complain
+from django.contrib import admin
+from .models import *
 
-class ComplainForm(forms.ModelForm):
-    class Meta:
-        model = Complain
-        fields = ['complainant_registration_number', 'complain_tag', 'complain_details']
+admin.site.register(Complain)
+admin.site.register(SystemGoal)
