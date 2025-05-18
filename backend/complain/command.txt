@@ -36,3 +36,33 @@ git checkout develop_khalid
 git add .
 git commit -m "Create choices.py and add Complain_tag in choices.py"
 git push origin develop_khalid
+
+Check your current branch:
+git branch
+
+Switch to develop_khalid:
+git checkout develop_khalid
+
+Add your changes:
+git add .
+
+or specify particular files:
+git add filename.py
+
+
+Commit your changes:
+git commit -m "Your descriptive commit message"
+
+Push to the remote branch:
+git push origin develop_khalid
+
+git checkout main
+git pull origin main
+git merge develop_khalid
+git push origin main
+
+Save and exit nano:
+
+    Press Ctrl + O → then press Enter to save.
+
+    Press Ctrl + X to exit.
