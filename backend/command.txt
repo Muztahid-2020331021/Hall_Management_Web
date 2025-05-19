@@ -66,3 +66,27 @@ Save and exit nano:
     Press Ctrl + O → then press Enter to save.
 
     Press Ctrl + X to exit.
+
+
+✅ Room
+✅ Hall
+✅ Provost Body
+✅ User Information
+✅ Admission
+✅ Office/Worker/Guard
+✅ Student
+✅ Complain
+✅ Complain Tag
+✅ System Goal
+✅
+❌ Forum
+❌ Meeting
+❌ Notice Board
+❌ Lost and Found
+❌ Guest Registration
+❌ Sports element
+❌ Feed Back 
+❌ Food/Item
+❌ Dinning/Canteen /Shop
+❌ Event
+❌ Official/Transaction
