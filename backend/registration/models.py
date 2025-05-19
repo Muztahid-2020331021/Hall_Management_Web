@@ -140,6 +140,8 @@ class Student(models.Model):
     semester = models.CharField(max_length=20)
     room_number = models.CharField(max_length=10)
     session = models.CharField(max_length=10)
+    hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True, blank=True)
+
 
     def __str__(self):
         return f"{self.registration_number} - {self.email}"
@@ -216,6 +218,8 @@ class ProvostBody(models.Model):
 
     department = models.CharField(max_length=100, default='')
     department_role = models.CharField(max_length=100,choices=DEPARTMENT_ROLE,default='Professor')
+    hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True, blank=True)
+
 
 
     def __str__(self):
@@ -228,6 +232,8 @@ class OfficialPerson(models.Model):
     email = models.EmailField(unique=True)
     name=models.CharField(max_length=100,default='')
     official_role = models.CharField(max_length=100,choices=OFFICE_PERSON_ROLE,default='Electrician')
+    hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True, blank=True)
+
 
     def __str__(self):
         return self.email
@@ -285,7 +291,8 @@ class AddOffice(models.Model):
                     'password': self.password,
                     'blood_group': self.blood_group,
                     'hall': self.hall,
-                    'user_role': self.user_role
+                    'user_role': self.user_role,
+                    'hall':self.hall
                 }
             )
 
@@ -298,7 +305,8 @@ class AddOffice(models.Model):
                         'name':self.name,
                         'provost_body_role': self.provost_body_role,
                         'department_role': self.department_role,
-                        'department': self.department
+                        'department': self.department,
+                        'hall':self.hall
                     }
                 )
 
@@ -310,7 +318,8 @@ class AddOffice(models.Model):
                     email=self.email,
                     defaults={
                         'name':self.name,
-                        'official_role': self.official_role
+                        'official_role': self.official_role,
+                        'hall':self.hall
                     }
                 )
         # Remove this line:
