@@ -37,4 +37,4 @@ class GuestRegistration(models.Model):
             raise ValidationError("Exit date/time cannot be earlier than entry date/time.")
 
     class Meta:
-        ordering = ['entry_date_time']
+        ordering = ['-entry_date_time']
