@@ -96,12 +96,10 @@ Save and exit nano:
 ✅ Meeting
 ✅ Notice Board
 ✅ Lost and Found
-✅ 
-✅ 
+✅ Event
+✅ Official/Transaction
 ✅ 
 ❌ Forum
 ❌ Feed Back 
 ❌ Food/Item
 ❌ Dinning/Canteen /Shop
-❌ Event
-❌ Official/Transaction

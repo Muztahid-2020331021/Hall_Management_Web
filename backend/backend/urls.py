@@ -9,6 +9,9 @@ urlpatterns = [
     path('guest_registration/', include('guest_registration.urls')),
     path('notice_board/', include('notice_board.urls')),
     path('lost_and_found/', include('lost_and_found.urls')),
+    path('meetings/', include('meetings.urls')),
+    path('event/', include('event.urls')),
+    path('official_transaction/', include('official_transaction.urls')),
 ]
 
 if settings.DEBUG:  # Now you can use settings.DEBUG
