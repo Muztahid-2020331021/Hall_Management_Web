@@ -16,13 +16,20 @@ python3 manage.py migrate
 python3 manage.py createsuperuser
 python3 manage.py runserver
 
+## For env and run
+
 source django_env/bin/activate
 python3 manage.py runserver
 
+## For specific Migration
+
+python3 manage.py makemigrations lost_and_found
 
 
 
-# Delete all migration files (except __init__.py) inside admission/migrations/
+
+## Delete all migration files (except __init__.py) inside admission/migrations/
+
 find admission/migrations -name "*.py" -not -name "__init__.py" -delete
 find admission/migrations -name "*.pyc" -delete
 
@@ -86,16 +93,13 @@ Save and exit nano:
 ✅ System Goal
 ✅ Guest Registration
 ✅ Sports element
-✅ 
-✅ 
-✅ 
+✅ Meeting
+✅ Notice Board
+✅ Lost and Found
 ✅ 
 ✅ 
 ✅ 
 ❌ Forum
-❌ Meeting
-❌ Notice Board
-❌ Lost and Found
 ❌ Feed Back 
 ❌ Food/Item
 ❌ Dinning/Canteen /Shop

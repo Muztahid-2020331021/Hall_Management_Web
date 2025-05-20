@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'complain',
     'notice_board',
+    'lost_and_found',
     'sport_equipment',
     'guest_registration',
     'rest_framework'
