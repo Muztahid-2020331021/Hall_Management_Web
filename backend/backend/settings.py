@@ -29,6 +29,10 @@ INSTALLED_APPS = [
     'registration',
     'corsheaders',
     'complain',
+    'meetings',
+    'events',
+    'forum'
+    'official_transaction',
     'notice_board',
     'lost_and_found',
     'sport_equipment',

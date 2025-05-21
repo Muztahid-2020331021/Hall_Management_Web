@@ -90,7 +90,7 @@ class Application(models.Model):
     study_program = models.CharField(max_length=20, choices=STUDY_PROGRAM_CHOICES)
     session = models.CharField(max_length=10, choices=SESSION_CHOICES)
     semester = models.CharField(max_length=20, choices=SEMESTER_CHOICES)
-    premanent_address = models.TextField()
+    permanent_address = models.TextField()
     home_distance_from_SUST_in_km = models.FloatField()
     family_monthly_income = models.PositiveIntegerField()
     special_reason_for_hall_seat = models.TextField(blank=True, null=True)
@@ -199,6 +199,7 @@ class Admission(models.Model):
                     'semester': application.semester,
                     'room_number': self.room_number.room_number,
                     'session': application.session,
+                    'hall':application.hall
                 }
             )
 
@@ -218,7 +219,7 @@ class ProvostBody(models.Model):
 
     department = models.CharField(max_length=100, default='')
     department_role = models.CharField(max_length=100,choices=DEPARTMENT_ROLE,default='Professor')
-    hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True, blank=True)
+    hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
 
 
 
@@ -232,7 +233,7 @@ class OfficialPerson(models.Model):
     email = models.EmailField(unique=True)
     name=models.CharField(max_length=100,default='')
     official_role = models.CharField(max_length=100,choices=OFFICE_PERSON_ROLE,default='Electrician')
-    hall = models.ForeignKey(Hall, on_delete=models.SET_NULL, null=True, blank=True)
+    hall = models.ForeignKey(Hall, on_delete=models.CASCADE,default="")
 
 
     def __str__(self):
