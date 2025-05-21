@@ -10,7 +10,7 @@ urlpatterns = [
     path('notice_board/', include('notice_board.urls')),
     path('lost_and_found/', include('lost_and_found.urls')),
     path('meetings/', include('meetings.urls')),
-    path('events/', include('event.urls')),
+    path('events/', include('events.urls')),
     path('official_transaction/', include('official_transaction.urls')),
     path('forum/', include('forum.urls')),
 ]

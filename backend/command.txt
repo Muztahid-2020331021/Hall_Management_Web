@@ -130,10 +130,6 @@ Save and exit nano:
 ✅ Event
 ✅ Official/Transaction
 ✅ 
-❌ 
-❌ 
-❌ 
-❌ 
 ❌ Feed Back 
 ❌ Food/Item
 ❌ Dinning/Canteen /Shop
