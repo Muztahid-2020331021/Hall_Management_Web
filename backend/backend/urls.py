@@ -1,22 +1,24 @@
-"""
-URL configuration for backend project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from django.conf import settings  # Import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('registration/', include('registration.urls')),
+    path('complain/', include('complain.urls')),
+    path('guest_registration/', include('guest_registration.urls')),
+    path('notice_board/', include('notice_board.urls')),
+    path('lost_and_found/', include('lost_and_found.urls')),
+    path('meetings/', include('meetings.urls')),
+    path('events/', include('events.urls')),
+    path('forum/', include('forum.urls')),
+    path('official_transaction/', include('official_transaction.urls')),
+    path('sport_equipment/', include('sport_equipment.urls')),
+    path('dining_canteen_shop/', include('dining_canteen_shop.urls')),
+    
+
 ]
+
+if settings.DEBUG:  # Now you can use settings.DEBUG
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
