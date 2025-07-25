@@ -44,6 +44,9 @@ const getLinksForRole = (role) => {
         { to: "manage-complaints", icon: GiBookPile, text: "Manage Complaints" },
         { to: "meetings", icon: FaHandshakeSimple, text: "Meetings" },
         { to: "hall-applicants", icon: FaUsers, text: "Hall Applicants" },
+                { to:"blood-bank", icon: FaBuilding, text: "Blood Bank"},
+        { to: "forum", icon: FaMagnifyingGlassChart, text: "Forum" },
+        { to: "official-contact", icon: FaUserCog, text: "Official Contact" },
       ];
     case "student":
       return [
@@ -52,6 +55,10 @@ const getLinksForRole = (role) => {
         { to: "notices", icon: PiNotepadFill, text: "Notices" },
         { to: "complaints", icon: BiSolidFoodMenu, text: "Complaints" },
         { to: "lost-found-items", icon: FaShapes, text: "Lost/Found items" },
+        { to:"blood-bank", icon: FaBuilding, text: "Blood Bank"},
+        { to: "forum", icon: FaMagnifyingGlassChart, text: "Forum" },
+        { to: "official-contact", icon: FaUserCog, text: "Official Contact" },
+        // Uncomment if you have these routes
         // { to: "my-profile", icon: FaUsers, text: "My Profile" },
         // { to: "meal-order", icon: FaUtensils, text: "Meal Order" },
       ];
@@ -61,6 +68,9 @@ const getLinksForRole = (role) => {
         { to: "manage-menu", icon: FaUtensils, text: "Manage Menu/Items" },
         { to: "reviews", icon: FaMagnifyingGlassChart, text: "Reviews" },
         { to: "notices", icon: PiNotepadFill, text: "Notices" },
+        { to:"blood-bank", icon: FaBuilding, text: "Blood Bank"},
+        { to: "forum", icon: FaMagnifyingGlassChart, text: "Forum" },
+        { to: "official-contact", icon: FaUserCog, text: "Official Contact" },
       ];
     default:
       return [{ to: "", icon: FaTachometerAlt, text: "Dashboard" }];

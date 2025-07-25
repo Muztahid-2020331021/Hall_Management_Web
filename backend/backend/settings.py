@@ -42,21 +42,27 @@ INSTALLED_APPS = [
     'django_filters',
 
     # Your apps
+    'blood_bank',
     'complain',
     'dining_canteen_shop',
     'events',
     'forum',
-    'official_transaction',
-    'lost_and_found',
     'guest_registration',
+    'halls_and_rooms', 
+    
+
+    'lost_and_found',
     'meetings',
     'notice_board',       # Already existing app
-    'student_admission',   # Newly added app
-    'halls_and_rooms',     # Newly added app
-    'user_info',           # Newly added app
-    'official',   
+    'official',  
+    'official_transaction',
     'sport_equipment',     # Newly added app
 
+    'student_admission',   # Newly added app
+        # Newly added app
+    'user_info',           # Newly added app
+     
+    
     # 3rd-party apps
     'corsheaders',
     'rest_framework',

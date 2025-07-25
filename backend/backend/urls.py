@@ -26,6 +26,7 @@ urlpatterns = [
     path('sport_equipment/', include('sport_equipment.urls')),
     path('student_admission/', include('student_admission.urls')),
     path('user_info/', include('user_info.urls')),
+    path('blood_bank/', include('blood_bank.urls')),  # Ensure this is included
 ]
 
 if settings.DEBUG:  # Now you can use settings.DEBUG

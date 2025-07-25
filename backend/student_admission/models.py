@@ -11,13 +11,14 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from user_info.models import UserInformation
 from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
+from blood_bank.models import Donor
 
 # =====================
 # PHONE NUMBER VALIDATOR
 # =====================
 phone_regex = RegexValidator(
-    regex=r'^(\+8801[3-9]\d{8}|01[3-9]\d{8})$',
-    message="Phone number must be in the format '+8801XXXXXXXXX' or '01XXXXXXXXX'."
+    regex=r'^(\+8801[3-9]\d{8})$',
+    message="Phone number must be in the format '+8801XXXXXXXXX'."
 )
 
 # =====================
@@ -46,7 +47,7 @@ class Application(models.Model):
     phone_number = models.CharField(
             validators=[phone_regex],
             max_length=14,
-            help_text="Enter 11-digit local or 14-digit international format (e.g., 01XXXXXXXXX or +8801XXXXXXXXX)"
+            help_text="Enter  14-digit international format (e.g.+8801XXXXXXXXX)"
         )    
     email = models.EmailField(unique=True)
     blood_group =models.CharField(max_length=100,choices= BLOOD_GROUP_CHOICES)
@@ -165,7 +166,7 @@ class Admission(models.Model):
 
             super().save(*args, **kwargs)
 
-            UserInformation.objects.update_or_create(
+            user_info, created = UserInformation.objects.update_or_create(
                 email=application.email,
                 defaults={
                     'name': application.name,
@@ -178,6 +179,7 @@ class Admission(models.Model):
                 }
             )
 
+
             Student.objects.update_or_create(
                 registration_number=application.registration_number,
                 defaults={
@@ -189,6 +191,23 @@ class Admission(models.Model):
                     'session': application.session,
                     'hall':self.hall
                 }
+            )
+             # Automatically add/update Donor record
+            donor_defaults = {
+                'full_name': application.name,
+                'email': application.email,
+                'phone': application.phone_number,
+                'blood_group': application.blood_group,
+                'hall': self.hall,
+                'user_role': 'student',
+                # You can fill department or other fields if applicable
+                'department': application.department_name,
+                'last_donation_date': None,  # or some default
+                # other Donor fields can be set to defaults or left blank
+             }
+            donor_obj, donor_created = Donor.objects.update_or_create(
+                full_name=user_info,
+                defaults=donor_defaults
             )
 
             application.delete()

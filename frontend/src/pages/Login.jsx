@@ -1,46 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Mock user data
-const mockUsers = [
-  {
-    email: "admin@sust.com",
-    password: "password",
-    role: "admin",
-    name: "Admin User",
-    hallName: "First Hall",
-  },
-  {
-    email: "staff@sust.com",
-    password: "password",
-    role: "official_staff",
-    name: "Staff Member",
-    hallName: "First Hall",
-  },
-  {
-    email: "student@sust.com",
-    password: "password",
-    role: "student",
-    name: "Student User",
-    hallName: "First Hall",
-    registration_number:"2020331036"
-  },
-  {
-    email: "dining@sust.com",
-    password: "password",
-    role: "service_provider",
-    name: "Dining Service",
-    hallName: "First Hall",
-  },
-  {
-    email: "canteen@sust.com",
-    password: "password",
-    role: "service_provider",
-    name: "Canteen Service",
-    hallName: "First Hall",
-  },
-];
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,6 +13,11 @@ const Login = () => {
     setError("");
     setIsLoading(true);
 
+    // 👇 DEBUG: Print email and password
+    console.log("Attempting login with:");
+    console.log("Email:", email);
+    console.log("Password:", password);
+
     if (!email || !password) {
       setError("Please enter both email and password.");
       setIsLoading(false);
@@ -60,27 +25,30 @@ const Login = () => {
     }
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const foundUser = mockUsers.find(
-        (user) => user.email === email && user.password === password
-      );
+      const response = await fetch("http://127.0.0.1:8000/user_info/login/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-      if (foundUser) {
-        localStorage.setItem("authToken", `mockToken_${foundUser.email}`);
-        localStorage.setItem("userRole", foundUser.role);
-        localStorage.setItem("userName", foundUser.name);
-        localStorage.setItem("hallName", foundUser.hallName);
-        if (foundUser.role === "student") {
-          localStorage.setItem(
-            "registrationNumber",
-            foundUser.registration_number
-          );
-        }
-
-        navigate("/dashboard");
-      } else {
-        throw new Error("Invalid email or password (mock check).");
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.detail || "Login failed");
       }
+
+      const data = await response.json();
+      const user = data.user;
+
+      localStorage.setItem("userEmail", user.email);
+      localStorage.setItem("userRole", user.user_role);
+      localStorage.setItem("userName", user.name);
+      localStorage.setItem("hallId", user.hall);
+      localStorage.setItem("userId", user.id);
+
+      console.log("Login successful for user:", user.name, "with role:", user.user_role);
+
+      // Navigate to dashboard layout after success
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message || "An error occurred during login.");
       console.error("Login error:", err);
@@ -88,8 +56,9 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
   const goToApply = () => {
-    navigate("/apply"); // You should have a route defined for /apply
+    navigate("/apply");
   };
 
   return (
