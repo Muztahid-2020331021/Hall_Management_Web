@@ -199,6 +199,9 @@ This project is currently in academic prototype stage. Licensing to be decided u
 **Khalid Azad**  
 _Computer Science & Engineering, 3rd Year 2nd Semester_
 
+**Md Muztahid Hassan**
+_Computer Science & Engineering_
+
 ---
 
 
